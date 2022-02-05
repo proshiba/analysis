@@ -179,7 +179,7 @@ https://app.any.run/tasks/59071771-ef3e-45a1-88f0-bfb2a7bb5502/
 また、マクロコード内では、cellを明確には指定しておらず、forでチェックを回している。  
 以下は、実際のワークシートで、文字を赤にした内容となる。  
 
-![emotetのワークシート内容](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/excel.png)
+![emotetのワークシート内容](excel.png)
 
 マクロの内容は以下となる。この内容には、悪性と思われるコードはないが、念のため文字列やfunction名は変えている。  
 ```
