@@ -24,7 +24,7 @@ ProcessHollowingのインジェクションとしての1つの特徴としては
 
 powershellマルウェアのコードをここにそのまま載せてしまうとまずいことになりかねないので、まずは全体像を画像で載せる。
 
-![powershellコード全体](./powershellcommand.png)
+![powershellコード全体](https://raw.githubusercontent.com/proshiba/analysis/main/emotet2/powershellcommand.png)
 
 上に乗せたbase64でエンコードされたコマンドを、マクロマルウェアが実行する。ただし、その際にはWMIのAPIを経由してプロセス生成をする形で実行する。  
 Note: wmicコマンドでいう、wmic process call create の結果と同等  
