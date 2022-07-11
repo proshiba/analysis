@@ -28,7 +28,7 @@ payload = fr'''"ms[-]msdt:/id PCWDiagnostic /skip force /param \"IT_RebrowseForF
 こういったコマンドを、`word/_rels/document.xml.rels`などのファイルに埋め込みます。  
 ちなみにmsdt.exeに直接渡してもできるかな、と思って試しましたが、Defenderでブロックされました。Defenderを止めても動作せず。まぁ修正されてることが確認できたと考えましょう。  
 
-![失敗画像](images/msdt01.png)
+![失敗画像](https://raw.githubusercontent.com/proshiba/analysis/main/follina/images/msdt01.png)
 
 ### 本番。検体を見てみる。  
 
@@ -71,7 +71,7 @@ grepですべての文字列にマッチさせ、recurseで全ファイル対象
 
 そうすると、とても興味深いプロセス起動情報がございました。  
 
-![virustotal情報](images/virustotal01.png)
+![virustotal情報](https://raw.githubusercontent.com/proshiba/analysis/main/follina/images/virustotal01.png)
 
 以下のようなpowershell起動がありますが、これはさすがにありえないですね。base64コマンドを実行してます。今度はこの中身を見てみましょう。  
 
