@@ -3,7 +3,7 @@
 最近、ハッキングフォーラムでフリーのランサムウェアビルダーが公開されていました。  
 redeemerというものであり、まぁRaaS(Ransomware as a Service)の一種、といえるかと思います。  
 
-![ハッキングフォーラム](images/hackforum01.png)
+![ハッキングフォーラム](https://raw.githubusercontent.com/proshiba/analysis/main/redeemer-ransomware/images/hackforum01.png)
 
 恐ろしいのは、これについては、興味がなくなったらオープンソースにする、といってますし、今後もランサムウェアの脅威は広がっていくのだろうなぁ、と感じさせます。  
 
@@ -13,7 +13,7 @@ redeemerというものであり、まぁRaaS(Ransomware as a Service)の一種�
 
 まず、zipで圧縮されて公開されていますので、そのままダウンロードすると以下のようなファイルが存在しています。  
 
-![redeemerキット](./images/redeemer-kit01.png)  
+![redeemerキット](https://raw.githubusercontent.com/proshiba/analysis/main/redeemer-ransomware/images/redeemer-kit01.png)  
 ※build.datというファイルがあったのですが、defenderさんが食べちゃったのでなくなってました。。
 
 
@@ -23,18 +23,18 @@ redeemerというものであり、まぁRaaS(Ransomware as a Service)の一種�
 
 ちなみに起動時の画面は以下。正直、こいつ自体にバックドアがしかけられたりしてないかな？というのが興味の大きなところでしたが、processhackerやmonitorで見てても怪しい挙動は見当たらず。  
 
-![redeemerキット](./images/redeemer-kit04.png)
+![redeemerキット](https://raw.githubusercontent.com/proshiba/analysis/main/redeemer-ransomware/images/redeemer-kit04.png)
 
 作成したredeemerをvirustotalにアップロードします。ちなみにこいつ自体はパッカー系の機能はない？(間違ってたらごめんなさい!)と思われるので、実際に悪用する奴はそのあたりも検討することになるでしょう。  
 
-![redeemer](./images/redeemer01.png)
-![redeemer](./images/redeemer02.png)
+![redeemer](https://raw.githubusercontent.com/proshiba/analysis/main/redeemer-ransomware/images/redeemer01.png)
+![redeemer](https://raw.githubusercontent.com/proshiba/analysis/main/redeemer-ransomware/images/redeemer02.png)
 
 ハッシュはもともとは存在なし。まぁ指定したメールアドレスなどをexeにまとめてるのでしょうから、当然ですが。検知状況はかなり検知されてますね。上でも言った通り、これを実際に使うのなら検知回避か実行前にAVの無効化または例外設定の実施が必要でしょう。  
 
 最後に実際に暗号化してみました。この辺りの動きはまぁいつも通りのランサムウェア、ですね。
 
-![redeemer](./images/redeemer03.png)
+![redeemer](https://raw.githubusercontent.com/proshiba/analysis/main/redeemer-ransomware/images/redeemer03.png)
 
 ### どういうビジネスモデルか
 
