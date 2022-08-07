@@ -84,10 +84,10 @@ $ sha256sum 3590/Report\ Jul\ 14\ 47787.iso
 ```
 
 このISOファイルはvirustotalに情報がありました。結構検知されてますね。  
-![ISOの検知状況](./images/isofile01.png)
+![ISOの検知状況](https://raw.githubusercontent.com/proshiba/analysis/main/QakBot/images/isofile01.png)
 
 バンドルファイルも書かれてますが、中々のものですね。  
-![ISOの検知状況2](./images/isofile02.png)
+![ISOの検知状況2](https://raw.githubusercontent.com/proshiba/analysis/main/QakBot/images/isofile02.png)
 
 しかし、ちょっと驚いたのはcalcも一緒に仕込まれてると思ったらそうではない？かもですね。あとで実際に開いてみてみましょう。  
 
@@ -107,10 +107,10 @@ lnkinfo 20181227
 
 さて、実際に開いてみてみました。  
 そうするとまぁそうだろうな、と思いましたがlnkファイル以外は全て隠しファイルになっています。  
-![ISOの中身](./images/isofile03.png)
+![ISOの中身](https://raw.githubusercontent.com/proshiba/analysis/main/QakBot/images/isofile03.png)
 
 実際、隠しファイルを表示しない（一般的な状態）だとこんな感じ。これは騙されそうですね。。  
-![ISOの中身](./images/isofile04.png)
+![ISOの中身](https://raw.githubusercontent.com/proshiba/analysis/main/QakBot/images/isofile04.png)
 
 あと1つ、とても大事なこととしてやっぱりcalc.exeはバンドルされてますね！よかったです。これならわかります。
 
@@ -122,7 +122,7 @@ lnkinfo 20181227
 さて、DLLは以下の2つがあります。これを見てみましょうか。  
 まずは、WindowsCodecs.dllを見てみましょう。stringsをとってみます。  
 
-![dll01](./images/dll01.png)
+![dll01](https://raw.githubusercontent.com/proshiba/analysis/main/QakBot/images/dll01.png)
 
 そうすると気になるものがありますね。DllRegisterServerの関数名が見れます。  
 これはregsvr32とかでDLLを登録するときとかの文言ですね。あと、このファイルはやたら容量が小さいです。  
@@ -131,16 +131,16 @@ lnkinfo 20181227
 
 まずは、以下でDllEntryPointの関数呼び出しからregsvr32の呼び出しが行われています。  
 
-![dllの読み込み時の関数](./images/dll02.png)
+![dllの読み込み時の関数](https://raw.githubusercontent.com/proshiba/analysis/main/QakBot/images/dll02.png)
 
-![dllの読み込み時の関数](./images/dll03.png)
+![dllの読み込み時の関数](https://raw.githubusercontent.com/proshiba/analysis/main/QakBot/images/dll03.png)
 
 もう1つのファイル、7533.dllはこれで呼び出されるように思われますね。  
 こう考えると他の動きがないですし、WindowsCOdecs.dll+calc.exeの挙動は最初だけですぐに使われなくなるようです。  
 
 実際、実行してみると確かにそのように動作しています。  
 
-    ![dllの挙動](./images/dll04.png)
+    ![dllの挙動](https://raw.githubusercontent.com/proshiba/analysis/main/QakBot/images/dll04.png)
 
 あとは7533.dllですが。正直面白そうな情報は見当たらなかったので一旦終了とさせていただきます。ちなみにtria.geなどにかけてみましたが、重くとまともに動かない。。なぜだろう？？  
 
