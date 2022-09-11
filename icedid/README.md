@@ -9,10 +9,10 @@
 
 ちなみにmalware bazaarで見る限りそれぞれ以下の検知量になっています。  
 
-![bumblebeeの統計](./images/bumblebee-stats.png)
+![bumblebeeの統計](https://raw.githubusercontent.com/proshiba/analysis/main/icedid/images/bumblebee-stats.png)
 引用元： https://bazaar.abuse.ch/browse/tag/BUMBLEBEE/
 
-![icedidの統計](./images/icedid-stats.png)
+![icedidの統計](https://raw.githubusercontent.com/proshiba/analysis/main/icedid/images/icedid-stats.png)
 引用元： https://bazaar.abuse.ch/browse/tag/BUMBLEBEE/
 
 うーん。IcedIDが減った、のは事実でしょうが正直bumblebeeの数（グラフのスケールが12までになってますのでだいぶ少ない）ということを考えますとまだまだIcedIDの方が多いですね。  
@@ -26,7 +26,7 @@ Note: スケールの変え方わからないので見づらい。。
 `2bfaaf86092bd183c8295fded306708d154874e5aed0d6743e591c8f469858be`
 
 レポーターは、`pr0xylife`さんですね。twitterフォローしてますけどおすすめです。  
-![twitter](./images/proxylife-twitter.png)
+![twitter](https://raw.githubusercontent.com/proshiba/analysis/main/icedid/images/proxylife-twitter.png)
 引用： https://twitter.com/pr0xylife/status/1567663680099082240
 
 まぁ、このツイートと今回のものはハッシュ違いますが。内容は同じです。  
@@ -35,17 +35,17 @@ Note: スケールの変え方わからないので見づらい。。
 ### ファイルを見てみる
 
 まず、検体(zip)をダウンロードして解凍するとisoファイルが入っています。  
-![isoファイル](./images/iso-file.png)
+![isoファイル](https://raw.githubusercontent.com/proshiba/analysis/main/icedid/images/iso-file.png)
 
 さて、このisoファイルをマウントしてみてみましょう。そうすると正直いつも通りの状態になってます。  
 
-![isoファイル](./images/iso-file02.png)
+![isoファイル](https://raw.githubusercontent.com/proshiba/analysis/main/icedid/images/iso-file02.png)
 
 なんというか、これ見てると思いますがしばらくは隠しファイルも表示するのをデフォルトにした方がいいんじゃないかな、と思いますね。  
 
 ついでに`Document`という名前のファイルですがこれはリンクファイルです。アイコンはexplorerになってますが、実際には`led\\xenopus.bat`
 
-![lnkファイル](./images/lnk-file.png)
+![lnkファイル](https://raw.githubusercontent.com/proshiba/analysis/main/icedid/images/lnk-file.png)
 
 では、このバッチはどうなっているのか？これを見てみましょう。  
 長いですけど、最後まで書いておきましょう。これだけだったら悪性の挙動しないですからね、DLLファイルは上げてないので。  
@@ -122,30 +122,30 @@ echo :I%nvatjr%V%rhwmko%S%xdszpj%MQ
 
 で、batを実行してみると以下のようになります。  
 
-![コマンド実行箇所](./images/cmd01.png)
+![コマンド実行箇所](https://raw.githubusercontent.com/proshiba/analysis/main/icedid/images/cmd01.png)
 
 さて、これで分かったことはdllファイルをrundll32で動かしていることですね。では今度はこのDLLファイルを見てみましょうか。  
 
 sha256: c6d6277f1355336eb5da55531c1cc927067a1defee412c60ceb281452d2388d6
 
 virustotalでは以下になってます。さすがに時間がたってるので大量に検出されてますね。  
-![dll01](./images/dll-vt01.png)
+![dll01](https://raw.githubusercontent.com/proshiba/analysis/main/icedid/images/dll-vt01.png)
 
 relationを見ると、以下のように通信しているようです。  
 
-![dll02](./images/dll-vt02.png)
+![dll02](https://raw.githubusercontent.com/proshiba/analysis/main/icedid/images/dll-vt02.png)
 
 通信先は`hxxp[:]//leonyelloswen[.]com`というURLになっています。  
 名前解決後のIPアドレスは`138[.]197[.]151[.]48`です。
 
 次に、DLL起動後に以下のようにインジェクション挙動があるようです。  
 うーん。これについては何を起動するところで検知したのかがわからないですし、何とも言い難いです。  
-![dll03](./images/dll-vt03.png)
+![dll03](https://raw.githubusercontent.com/proshiba/analysis/main/icedid/images/dll-vt03.png)
 
 サスペンドでプロセス起動するインジェクションで有名なのは`process hollowing`だと思いますが、これはどうなんでしょうかね。。  
 
 さて、次にsandboxの古典的回避があったのでそれを見ます。  
-![dll03](./images/dll-vt04.png)
+![dll04](https://raw.githubusercontent.com/proshiba/analysis/main/icedid/images/dll-vt04.png)
 
 長時間のスリーブは、なんだかんだ言ってやっぱり使われますね。  
 
