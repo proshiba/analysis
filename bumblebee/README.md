@@ -18,11 +18,11 @@ https://www.bleepingcomputer.com/news/security/bumblebee-malware-adds-post-explo
 
 では、まずはzipを開いてみます。そうすると今度は`img`ファイルですね。まぁこれも`iso`と同じようなものです。  
 
-![zipfile](./images/zip-file.png)
+![zipfile](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/zip-file.png)
 
 内容を見てみますと、隠しファイルのDLLとlnkファイルになっています。ありがちですね。  
 
-![lnkfile](./images/lnk-file.png)
+![lnkfile](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/lnk-file.png)
 
 Lnkの内容は以下になってます。  
 ```dos
@@ -32,7 +32,7 @@ C:\Windows\System32\odbcconf.exe /a {REGSVR DFSdDHyafGNBMb.dll}
 正直、やってることはなんとなくわかりますが`odbcconf.exe`を使ってるのは可能なのかな？と思ってLoLBASで見てみました。  
 そうすると確かにあるようですね。
 
-![odbcconf](./images/odbcconf.png)  
+![odbcconf](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/odbcconf.png)  
 引用： https://lolbas-project.github.io/lolbas/Binaries/Odbcconf/
 
 Note: LoLBASはLoL(Living of the Land)によって利用される各種バイナリとその用途が記載されてあります。  
@@ -44,21 +44,21 @@ sha256: f1aa85cd3d3ed3d2b3ff8e705d81c32d2e7794208f7f7a76f7314ef408b897d2
 
 さて、DLLを見てみましょうか。  
 以下はvirustotalの検出です。数日たってますから既に大量に検知されてますね。  
-![virustotal01](./images/vt-file01.png)
+![virustotal01](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/vt-file01.png)
 
 relationを見ると通信先は２つ。ただし、どちらも検知ゼロです。  
 
-![virustotal02](./images/vt-file02.png)  
+![virustotal02](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/vt-file02.png)  
 
 それもそのはず。通信先のIPはどちらもmicrosoftになってます。IaaS利用でしょうね。  
 1)
-![virustotal02](./images/vt-file03.png)
+![virustotal02](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/vt-file03.png)
 2)
-![virustotal02](./images/vt-file04.png)
+![virustotal02](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/vt-file04.png)
 
 その他、サンドボックスの実行結果は正直あまり見るところはないですが。１つ見ておいた方がいいかと思うのは以下です。  
 
-![virustotal02](./images/vt-file05.png)
+![virustotal02](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/vt-file05.png)
 
 サンドボックス実行検知系ですね。  
 どういうことが確認されるのかを理解しておくのはいいと思います。  
@@ -71,7 +71,7 @@ relationを見ると通信先は２つ。ただし、どちらも検知ゼロで
 sha256: e9a1ce3417838013412f81425ef74a37608754586722e00cacb333ba88eb9aa7
 URL: https://bazaar.abuse.ch/sample/e9a1ce3417838013412f81425ef74a37608754586722e00cacb333ba88eb9aa7/
 
-![vhdfile01](./images/vhd-file01.png)
+![vhdfile01](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/vhd-file01.png)
 
 ```dos
 C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ep bypass -file lkndwsjds.ps1
@@ -81,12 +81,12 @@ C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ep bypass -file lkndw
 
 では、スクリプトを見てみましょう。  
 
-![psfile01](./images/ps-file01.png)  
+![psfile01](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/ps-file01.png)  
 
 うん、よくあるobfuscationですね。  
 下の方を見るととても分かりやすいです。  
 
-![psfile02](./images/ps-file02.png)  
+![psfile02](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/ps-file02.png)  
 
 では、少しわかりやすくします。  
 
@@ -112,7 +112,7 @@ $dtPrEr | iex
 なので、IEXなしで実行してみましょう。
 そうすると以下になります。
 
-![psfile03](./images/ps-file03.png)  
+![psfile03](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/ps-file03.png)  
 
 ちなみにスクリプトの最後の方は以下。  
 
@@ -156,7 +156,7 @@ $Success = $Win32Functions.VirtualFree.Invoke($PEHandle, [UInt64]0, $Win32Consta
 
 この上で、IDAで開くとちゃんと開けます。やっぱりDLLファイルですね。  
 
-![IDA](./images/ida-file01.png)
+![IDA](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/ida-file01.png)
 
 ハッシュは以下です。  
 
@@ -165,7 +165,7 @@ sha256: f156f9741d72f053129135b42822975874cdf10e49f20e1e63efdd3525ccf0f2
 virustotalでチェックしましたが、残念ながらこのハッシュは存在しなかったのでアップロードしました。  
 そうするとかなり検知されてますね。  
 
-![virustotal](./images/vt-file06.png)
+![virustotal](https://raw.githubusercontent.com/proshiba/analysis/main/bumblebee/images/vt-file06.png)
 
 中々面白い内容でした。DLLをファイルに書かずに読み込ませるのは、powershell利用の時では珍しい？気もしますが、どうなんでしょうね。  
 
