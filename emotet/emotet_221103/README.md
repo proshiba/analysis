@@ -125,7 +125,7 @@ shodanではまだデータが新しくなってないのかいくつかポー�
 
 ちなみに[runcurl](https://reqbin.com/curl)で試しにアクセスしてみたら空ページでした。
 
-![runcurl-result](images/runcurl01.png)
+![runcurl-result](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/runcurl01.png)
 
 さて、次は実際にマルウェアを見てみましょう。  
 
@@ -136,7 +136,7 @@ shodanではまだデータが新しくなってないのかいくつかポー�
 - hash: sha256  
 - URL: https://www.virustotal.com/gui/file/ef2ce641a4e9f270eea626e8e4800b0b97b4a436c40e7af30aeb6f02566b809c
 
-![virustotal01](images/virustotal01.png)
+![virustotal01](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/virustotal01.png)
 
 FirstSubmitが昨日の17:21(+09:00)ですし、かなり検知されてますね。  
 ちなみに、名称は以下など(表示の上から10のみ抜粋)です。前からよくあるような名前がありますね。  
@@ -155,7 +155,7 @@ FirstSubmitが昨日の17:21(+09:00)ですし、かなり検知されてます�
 
 次にbehaviorを見てみます。  
 
-![virustotal01](images/virustotal02.png)
+![virustotal01](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/virustotal02.png)
 
 見る限り、**少なくともこの検体は***前のEmotetと同じような動きをしているように見えます。  
 そう思ったところを以下に書きますね。  
