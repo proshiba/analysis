@@ -252,7 +252,7 @@ longlong FUN_180006d30(longlong param_1,char *param_2)
   return param_1 + /* 後略 */ ;
 }
 ```
-Note: マルウェア内のコードですし、基本的に消しました。ghidraでimportすればすぐ見れます
+Note: これで実行はできないですが、マルウェア内のコードですし、念のため消しました。ghidraでimportすればすぐ見れます
 
 ##### ITAタグのものって何？
 
