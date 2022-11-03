@@ -220,10 +220,10 @@ f91ff6f6cd234bf1d80580d95734416c31ac6f7a9454eb224980de1cddeb0b84
 
 ![binary01](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/binary01.png)
 
-正直、私はバイナリの分析ができないので、こっから先はプロにお任せしましょうかね。。  
+正直、私はバイナリの分析ができないので、ここから先はプロにお任せしましょうかね。。  
 
 一応、`DllRegisterServer`からの処理が以下になってます。  
-`FUN_1800006d30`関数をコールして、その受け取りが多分ポインタアドレス何でしょうかね。  
+`FUN_1800006d30`関数をコールして、その受け取りが多分ポインタアドレス何でしょうね。  
 返り値をコール（`(*pcVar1)()`）してます。
 
 ```c
@@ -231,19 +231,13 @@ undefined8 DllRegisterServer(void)
 {
     code *pcVar1;
     /* 0x6e30  1  DllRegisterServer */
-      pcVar1 = (code *)FUN_180006d30(DAT_1800902f8,"ZJKfDxsqUt");
+    pcVar1 = (code *)FUN_180006d30(DAT_1800902f8,"ZJKfDxsqUt");
     (*pcVar1)();
-      return 0;
+    return 0;
 }
 
 
 // param_1 -> DAT_1800902f8, param_2 -> "ZJKfDxsqUt"
-// DAT_1800902f8 is followings
-//    DAT_1800902f8  XREF[1]:  DllRegisterServer:180006e44 (R)   
-//       1800902f8 00  00  00       undefine   0000000000000000h
-//                 00  00  00 
-//                 00  00
-
 longlong FUN_180006d30(longlong param_1,char *param_2)
 
 {
@@ -254,28 +248,11 @@ longlong FUN_180006d30(longlong param_1,char *param_2)
   longlong lVar5;
   uint local_48;
   
-  lVar5 = param_1 + (ulonglong)*(uint *)(param_1 + *(int *)(param_1 + 0x3c) + 0x88);
-  uVar1 = *(uint *)(lVar5 + 0x20);
-  uVar2 = *(uint *)(lVar5 + 0x1c);
-  uVar3 = *(uint *)(lVar5 + 0x24);
-  local_48 = 0;
-  while( true ) {
-    if (*(uint *)(lVar5 + 0x18) <= local_48) {
-      return 0;
-    }
-    iVar4 = strcmp((char *)(param_1 +
-                           (ulonglong)
-                           *(uint *)(param_1 + (ulonglong)uVar1 + (ulonglong)local_48 * 4)),param_2)
-    ;
-    if (iVar4 == 0) break;
-    local_48 = local_48 + 1;
-  }
-  return param_1 + (ulonglong)
-                   *(uint *)(param_1 + (ulonglong)uVar2 +
-                            (ulonglong)
-                            *(ushort *)(param_1 + (ulonglong)uVar3 + (ulonglong)local_48 * 2) * 4 );
+  // 省略
+  return param_1 + /* 後略 */ ;
 }
 ```
+Note: マルウェア内のコードですし、基本的に消しました。ghidraでimportすればすぐ見れます
 
 ##### ITAタグのものって何？
 
