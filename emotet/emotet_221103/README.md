@@ -6,12 +6,12 @@ Emotetが再開しましたね。
 まぁ、そんなことを言ってても仕方ないので現状を見てみましょう。  
 
 まずは、URLhausです。  
-![urlhaus_stats](./images/stats02.png)
+![urlhaus_stats](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/stats02.png)
 引用元：https://urlhaus.abuse.ch/browse/tag/emotet/
 
 次にmalware bazaarです。
 
-![malware_bazaar_stats](./images/stats01.png)
+![malware_bazaar_stats](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/stats01.png)
 引用元：https://bazaar.abuse.ch/browse/tag/Emotet/
 
 どちらもそうですが、11/3の朝に取ったので11/3は減ってみえるだけです。ご注意を。  
@@ -214,11 +214,11 @@ SHA256 hash of .\malware.bin:
 f91ff6f6cd234bf1d80580d95734416c31ac6f7a9454eb224980de1cddeb0b84
 ```
 
-![virustotal03](./images/virustotal03.png)
+![virustotal03](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/virustotal03.png)
 
 中身を少し見てみましたが、まぁDLLですね。  
 
-![binary01](./images/binary01.png)
+![binary01](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/binary01.png)
 
 正直、私はバイナリの分析ができないので、こっから先はプロにお任せしましょうかね。。  
 
@@ -287,7 +287,7 @@ ITAタグが付いてるやつってどんなものかな？と思ってみて�
 
 そしたらどうやらこれもexcelファイルですね。実際に開いた結果が以下です。  
 
-![itafile](./images/itafile01.png)
+![itafile](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/itafile01.png)
 
 ##### exe形式のものってどう動く？
 
@@ -298,13 +298,13 @@ ITAタグが付いてるやつってどんなものかな？と思ってみて�
 
 ダウンロードしてみると以下のようなファイルになっています。  
 
-![exetype01](./images/exetype01.png)
+![exetype01](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/exetype01.png)
 
 ただ、virustotalで見てみるとDLLファイルになっていますね。ちなみに、ghidraで見ても`DllRegisterServer`があります。  
 
-![exetype02](./images/exetype02.png)
+![exetype02](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/exetype02.png)
 
-![exetype03](./images/exetype03.png)
+![exetype03](https://raw.githubusercontent.com/proshiba/analysis/main/emotet/emotet_221103/images/exetype03.png)
 
 virustotalのbehaviorを見てもほぼ変わらない気がします。結局は物は変わらないのかな？て感じですね。。  
 ただ、ちょっと詳しくなくてわからないのですが、`exe`と`dll`でどっちも動くようにできるのでしょうかね？  
